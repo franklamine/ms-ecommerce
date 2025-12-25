@@ -1,12 +1,8 @@
 package com.frank.billingservice.service;
 
 import com.frank.billingservice.entities.Bill;
-import com.frank.billingservice.entities.ProductItem;
 import com.frank.billingservice.feign.CustomerRestClient;
-import com.frank.billingservice.feign.ProductRestClient;
-import com.frank.billingservice.model.Product;
 import com.frank.billingservice.repository.BillRepository;
-import com.frank.billingservice.repository.ProductItemRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
