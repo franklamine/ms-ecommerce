@@ -16,19 +16,21 @@ public class GatewayServiceApplication {
         SpringApplication.run(GatewayServiceApplication.class, args);
     }
 
-//  Autre facon de configurer les routes statique comme un bean dans une classe de configuration
-//  @Bean
-    RouteLocator staticRoutes(RouteLocatorBuilder builder) {
-        return builder.routes()
-                .route("r1", predicate -> predicate.path("/customers/**").uri("lb://CUSTOMER-SERVICE"))
-                .route("r2", predicate-> predicate.path("/products/**").uri("lb://INVENTORY-SERVICE"))
-                .build();
-    }
 
- // Autre facon de configurer les routes dynamiques comme un bean dans une classe de configuration
+
+    // Autre facon de configurer les routes dynamiques comme un bean dans une classe de configuration
     @Bean
     DiscoveryClientRouteDefinitionLocator dynamicRoutes(ReactiveDiscoveryClient rdc, DiscoveryLocatorProperties dlp) {
         return new DiscoveryClientRouteDefinitionLocator(rdc, dlp);
     }
 
 }
+
+//  Autre facon de configurer les routes statique comme un bean dans une classe de configuration
+//@Bean
+//    RouteLocator staticRoutes(RouteLocatorBuilder builder) {
+//        return builder.routes()
+//                .route("r1", predicate -> predicate.path("/customers/**").uri("lb://CUSTOMER-SERVICE"))
+//                .route("r2", predicate -> predicate.path("/products/**").uri("lb://INVENTORY-SERVICE"))
+//                .build();
+//    }

@@ -1,5 +1,6 @@
 package com.frank.billingservice.entities;
 
+import com.frank.billingservice.model.Customer;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,9 +16,11 @@ public class Bill {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date billingDate;
-    private long custumerId;
+    private Long custumerId;
     @OneToMany(mappedBy = "bill")
-    private List<ProductItem> productItem = new ArrayList<>();
+    private List<ProductItem> productItems = new ArrayList<>();
+    @Transient
+    private Customer customer;
 
 
 }

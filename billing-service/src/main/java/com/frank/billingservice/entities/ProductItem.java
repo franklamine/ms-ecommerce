@@ -1,5 +1,7 @@
 package com.frank.billingservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.frank.billingservice.model.Product;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,9 +15,12 @@ public class ProductItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String productId;
+    private Long productId;
     @ManyToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Bill bill;
     private int quantity;
     private double unitPrice;
+    @Transient
+    private Product product;
 }
